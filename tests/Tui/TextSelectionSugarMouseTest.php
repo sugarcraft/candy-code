@@ -17,8 +17,8 @@ use SugarCraft\Mouse\SelectionRange;
 use SugarCraft\Sprinkles\Style;
 
 /**
- * The rewire of {@see TextSelection} onto candy-mouse's upstreamed
- * {@see Selection} / {@see SelectionRange} (crush_libs candy-mouse #7).
+ * The rewire of {@see TextSelection} onto sugar-mouse's upstreamed
+ * {@see Selection} / {@see SelectionRange} (crush_libs sugar-mouse #7).
  *
  * The rewire changed the coordinate base — 1-based terminal cells instead of
  * the old 0-based frame offsets, dropping Chat's `[$col - 1, $row - 1]` step —
@@ -27,7 +27,7 @@ use SugarCraft\Sprinkles\Style;
  * every pointer in and around it, must clamp, span, extract and highlight
  * exactly as before, one cell over.
  */
-final class TextSelectionCandyMouseTest extends TestCase
+final class TextSelectionSugarMouseTest extends TestCase
 {
     /** The pre-rewire 0-based region: rowFrom, rowTo, colFrom, colTo. */
     private const LEGACY_REGION = [1, 4, 3, 12];
@@ -99,7 +99,7 @@ final class TextSelectionCandyMouseTest extends TestCase
         self::assertGreaterThan(2000, $checked, 'the sweep actually ran');
     }
 
-    public function testRangeIsCandyMousesOwnSnapshotOfTheSameGesture(): void
+    public function testRangeIsSugarMousesOwnSnapshotOfTheSameGesture(): void
     {
         $sel = TextSelection::at(9, 4, [2, 5, 4, 13])?->withHead(5, 2);
         self::assertNotNull($sel);
@@ -160,7 +160,7 @@ final class TextSelectionCandyMouseTest extends TestCase
 
     // =========================================================================
     // The pre-rewire 0-based geometry, transcribed from TextSelection as it
-    // stood before it delegated to candy-mouse. Reference only.
+    // stood before it delegated to sugar-mouse. Reference only.
     // =========================================================================
 
     /**
